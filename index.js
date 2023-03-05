@@ -16,44 +16,54 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 
+// Add team array
+const teamArray = []; 
+
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
 // Manager prompts
-function addManager() {
+const addManager() => {
     console.log("Build your team profile");
     inquirer.prompt([
         {
-            type: "input",
-            name: "managerName",
+            type: 'input',
+            name: 'managerName',
             message: "Enter the managers name",
-            validate: answer =>  {
-                if (answer !== "") {
+            validate: answer => {
+                if (answer) {
                     return true;
+                } else {
+                    console.log ("Name cannot be left empty")
+                return false;
                 }
-                return "Name cannot be left empty";
             }
         },
         {
-            type: "input",
-            name: "managerId",
+            type: 'input',
+            name: 'managerId',
             message: "Enter the managers ID",
             validate: answer =>  {
-                if (answer !== "") {
-                    return true;
+                if (isNaN(answer)) {
+                    console.log ("ID cannot be left empty")
+                    return false;
+                } else {
+                return true;
                 }
-                return "ID cannot be left empty";
             }
         },
         {
-            type: "input",
-            name: "managerEmail",
+            type: 'input',
+            name: 'managerEmail',
             message: "Enter the managers email",
-            validate: answer =>  {
-                if (answer !== "") {
+            validate: managerEmail =>  {
+                valid = "/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/".test(managerEmail)
+                if (valid) {
                     return true;
+                } else {
+                    console.log ("Email cannot be left empty")
+                    return false;
                 }
-                return "Email cannot be left empty";
             }
         },
         {
@@ -61,26 +71,27 @@ function addManager() {
             name: "managerOfficeNumber",
             message: "Enter the managers office number",
             validate: answer =>  {
-                if (answer !== "") {
-                    return true;
+                if (isNan(answer)) {
+                    console.log ("Office number cannot be left empty")
+                    return false;
+                } else {
+                return true;
                 }
-                return "Office number cannot be left empty";
                 }
             }
     ])
     
     .then(answers =>{
         const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
-        teamInput.push(manager);
+        teamArray.push(manager);
         idInput.push(answers.managerId);
         addTeam();
     });
 }
 
 // addTeam prompts
-
-function addTeam() {
-
+const addTeam() => {
+    console.log("Add other members to your team");
     inquirer.prompt([
         {
             type: "list",
@@ -109,8 +120,8 @@ function addTeam() {
 }
 
 // Add engineer prompts
-
-function addEngineer() {
+const addEngineer() => {
+    console.log("Add your engineer profile");
     inquirer.prompt([
         {
             type: "input",
@@ -160,15 +171,15 @@ function addEngineer() {
     
     .then(answers => {
         const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGitHub);
-        teamInput.push(engineer);
+        teamArray.push(engineer)
         idInput.push(answers.engineerId);
         addTeam();
     });
 }
 
 // Add intern prompts
-
-function addIntern() {
+const addIntern() => {
+    console.log("Add your intern profile");
     inquirer.prompt([
         {
             type: "input",
@@ -216,7 +227,7 @@ function addIntern() {
         }
     ]). then(answers =>{
         const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
-        teamInput.push(intern);
+        teamArray.push(intern)
         idInput.push(answers.internId);
         addTeam();
     });
