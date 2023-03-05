@@ -76,3 +76,34 @@ function addManager() {
         addTeam();
     });
 }
+
+// addTeam prompts
+
+function addTeam() {
+
+    inquirer.prompt([
+        {
+            type: "list",
+            name: "roleOption",
+            message: "Choose a role to add next",
+            choices: [
+                "Engineer",
+                "Intern",
+                "Finish building team"
+            ]
+        }
+    ])
+    
+    .then(userInput => {
+        switch (userInput.roleOption) {
+            case "Engineer":
+                addEngineer();
+                break;
+            case "Intern":
+                addIntern();
+                break;
+            default:
+                generateHTML();
+        }
+    });
+}
