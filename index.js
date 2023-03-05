@@ -107,3 +107,61 @@ function addTeam() {
         }
     });
 }
+
+// Add engineer prompts
+
+function addEngineer() {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "engineerName",
+            message: "Enter the engineers name",
+            validate: answer =>  {
+                if (answer !== "") {
+                    return true;
+                }
+                return "Name cannot be left empty";
+            }
+        },
+        {
+            type: "input",
+            name: "engineerId",
+            message: "Enter the engineers ID",
+            validate: answer =>  {
+                if (answer !== "") {
+                    return true;
+                }
+                return "ID cannot be left empty";
+            }
+        },
+        {
+            type: "input",
+            name: "engineerEmail",
+            message: "Enter the engineers email",
+            validate: answer =>  {
+                if (answer !== "") {
+                    return true;
+                }
+                return "Email cannot be left empty";
+            }
+        },
+        {
+            type: "input",
+            name: "engineerGithub",
+            message: "Enter the engineer's GitHub",
+            validate: answer =>  {
+                if (answer !== "") {
+                    return true;
+                }
+                return "GitHub cannot be left empty";
+            }
+        }
+    ])
+    
+    .then(answers => {
+        const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGitHub);
+        teamInput.push(engineer);
+        idInput.push(answers.engineerId);
+        addTeam();
+    });
+}
