@@ -165,3 +165,59 @@ function addEngineer() {
         addTeam();
     });
 }
+
+// Add intern prompts
+
+function addIntern() {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "internName",
+            message: "Enter the intern's name",
+            validate: answer =>  {
+                if (answer !== "") {
+                    return true;
+                }
+                return "Name cannot be left empty";
+            }
+        },
+        {
+            type: "input",
+            name: "internId",
+            message: "Enter the interns ID",
+            validate: answer =>  {
+                if (answer !== "") {
+                    return true;
+                }
+                return "ID cannot be left empty";
+            }
+        },
+        {
+            type: "input",
+            name: "internEmail",
+            message: "Enter the interns email",
+            validate: answer =>  {
+                if (answer !== "") {
+                    return true;
+                }
+                return "Email cannot be left empty";
+            }
+        },
+        {
+            type: "input",
+            name: "internSchool",
+            message: "Enter the interns school",
+            validate: answer =>  {
+                if (answer !== "") {
+                    return true;
+                }
+                return "School cannot be left empty";
+            }
+        }
+    ]). then(answers =>{
+        const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
+        teamInput.push(intern);
+        idInput.push(answers.internId);
+        addTeam();
+    });
+}
