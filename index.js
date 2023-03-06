@@ -224,7 +224,7 @@ class TeamPrompt{
         const pageHtml = generateHTML(this.getTeamArray());
         fs.writeFile('./pages/index.html', pageHtml, err => {
             if (err) throwError;
-            console.log('Team complete. Find it in the pages/ folder under index.html');
+            console.log('Team complete. Find it in the pages folder under index.html');
         }
         );
     }
