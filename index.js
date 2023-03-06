@@ -19,7 +19,7 @@ const { throwError } = require("rxjs");
 
 // Add team array
 // added prompt to construct and then get
-class prompt{
+class TeamPrompt{
         constructor(){
     this.teamArray = []; 
     }
@@ -234,6 +234,6 @@ class prompt{
 
 // Runs prompts
 const prompt = new prompt();
-prompt.questions();
+teamPrompt.questions();
 //Export
 module.exports = prompt
