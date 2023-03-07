@@ -24,17 +24,17 @@
 
 ### Deployment / Code Repository
 
-[Live Deployment]()
+[Live Deployment](https://maclauren.github.io/team-profile-generator/)
 
-[Repository]()
+[Repository](https://github.com/maclauren/team-profile-generator)
 
 ### Screenshots
 
 App:
-<img src="" style="max-width: 800px;">
+<img src="./assets/screenshot-html.png" style="max-width: 800px;">
 
 Team Profile Page:
-<img src="" style="max-width: 800px;">
+<img src="./assets/screenshot-terminal.png" style="max-width: 800px;">
 
 ### User Story & Acceptance Criteria
 
