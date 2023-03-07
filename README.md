@@ -31,10 +31,10 @@
 ### Screenshots
 
 App:
-<img src="./assets/screenshot-html.png" style="max-width: 800px;">
+<img src="./assets/screenshot-terminal.png" style="max-width: 800px;">
 
 Team Profile Page:
-<img src="./assets/screenshot-terminal.png" style="max-width: 800px;">
+<img src="./assets/screenshot-html.png" style="max-width: 800px;">
 
 ### User Story & Acceptance Criteria
 
