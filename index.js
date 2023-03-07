@@ -101,7 +101,7 @@ class TeamPrompt{
       // Put manager inputs into teamArray
         .then((answers) => {
             const newManager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
-            teamArray.push(newManager);
+            this.teamArray.push(newManager);
             // Return to questions
             this.questions();
         });
@@ -159,7 +159,7 @@ class TeamPrompt{
         // Put manager inputs into teamArray
         .then(answers => {
             const newEngineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGitHub);
-            teamArray.push(newEngineer)
+            this.teamArray.push(newEngineer)
             // Return to questions
             this.questions();
         });
@@ -214,22 +214,24 @@ class TeamPrompt{
             // 
         ]). then(answers =>{
             const newIntern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
-            teamArray.push(newIntern)
+            this.teamArray.push(newIntern)
             idInput.push(answers.internId);
             // Return to questions
             this.questions();
         });
 
     } else if(employeeRole === 'I am done adding roles') {
-        const pageHtml = generateHTML(this.getTeamArray());
-        fs.writeFile('./pages/index.html', pageHtml, err => {
+        const createTeamHtml = () => {
             if (err) throwError;
-            console.log('Team complete. Find it in the pages folder under index.html');
+                else if (!fs.existsSync(OUTPUT_DIR)) {
+                  fs.mkdirSync(OUTPUT_DIR);
+                }
+                fs.writeFileSync(outputPath, render(teamArray), "utf-8");
+                console.log('Team complete. Find it in the output folder under team.html');
+            }
         }
         );
     }
-});
-}
 };
 
 // Runs prompts
